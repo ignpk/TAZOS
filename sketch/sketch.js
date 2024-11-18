@@ -1,4 +1,5 @@
 
+
 // ----------------- RESPLANDOR CARTA Y EFECTO 3D -----------------
 
 document.addEventListener("DOMContentLoaded", function() { 
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const xAxis = (centerX - clientX) / 10;
       const yAxis = -(centerY - clientY) / 10;
 
-      elemento.style.transform = `perspective(2000px) rotateX(${yAxis}deg) rotateY(${xAxis}deg) scale(1.6)`;
+      elemento.style.transform = `perspective(2000px) rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
 
       const circles = elemento.querySelectorAll("div[class^='circle']");
       circles.forEach(circle => {
@@ -105,8 +106,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // ----------------- ANGULO DE ROTACIÓN Y CARTA AL AZAR -----------------
 
-document.addEventListener("DOMContentLoaded", function() {
-  const elementosCarousel = document.querySelectorAll('.carousel-item');
+document.addEventListener("DOMContentLoaded", function () {
+  const carouselItems = document.querySelectorAll('.carousel-item'); // Selecciona los contenedores de tarjetas
+  const tarjetas = document.querySelectorAll('.carousel-item .tarjeta'); // Selecciona las tarjetas
+
+  // Lista de animaciones disponibles
+  const animaciones = ['animacion1', 'animacion2', 'animacion3'];
 
   function mostrarCartas() {
     const anchoPantalla = window.innerWidth;
@@ -115,18 +120,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Selecciona índices aleatorios únicos según la cantidad de cartas a mostrar
     while (indicesAleatorios.length < cantidadCartas) {
-      const indiceAleatorio = Math.floor(Math.random() * elementosCarousel.length);
+      const indiceAleatorio = Math.floor(Math.random() * tarjetas.length);
       if (!indicesAleatorios.includes(indiceAleatorio)) {
         indicesAleatorios.push(indiceAleatorio);
       }
     }
 
-    elementosCarousel.forEach((elemento, index) => {
+    // Itera sobre las tarjetas para mostrarlas o ocultarlas
+    tarjetas.forEach((tarjeta, index) => {
+      const parent = tarjeta.closest('.carousel-item'); // Encuentra el contenedor principal
+
+      // Remueve animaciones previas
+      tarjeta.classList.remove(...animaciones);
+      parent.style.display = 'none'; // Oculta el contenedor completo
+
       if (indicesAleatorios.includes(index)) {
-        elemento.style.display = 'flex';
-        elemento.style.transform = 'none';
-      } else {
-        elemento.style.display = 'none';
+        parent.style.display = 'flex'; // Muestra solo los seleccionados
+        tarjeta.style.transform = 'none';
+
+        // Aplica una animación diferente a cada tarjeta seleccionada
+        const animacion = animaciones[indicesAleatorios.indexOf(index) % animaciones.length];
+        tarjeta.classList.add(animacion);
       }
     });
   }
