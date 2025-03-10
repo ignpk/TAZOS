@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const arriba = elemento.querySelector(".arriba");
     const sombra = elemento.querySelector(".sombra");
 
+    let lastPositionX = 0;
+    let lastPositionY = 0;
+    let accumulatedY1 = 0;
+    let accumulatedY2 = 0;
+
     const moverLineas = (e) => {
       const isTouchEvent = e.type.includes("touch");
       const clientX = isTouchEvent ? e.touches[0].clientX : e.clientX;
@@ -35,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const offsetY = clientY - rect.top;
         const porcentajeY = offsetY / rect.height;
 
-        if (porcentajeY < 0.33) {
+      if (porcentajeY < 0.33) {
           arriba.style.opacity = 1 - (porcentajeY * 3);
           medio.style.opacity = (porcentajeY - 0) * 3;
           sombra.style.opacity = 0;
@@ -56,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
         circle.style.left = `${clientX - rect.left}px`;
         circle.style.top = `${clientY - rect.top}px`;
       });
+
+
     };
 
     const startInteraction = () => {
