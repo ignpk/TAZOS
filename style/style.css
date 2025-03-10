@@ -86,16 +86,14 @@ overflow: hidden;
 
 
 .carta {
+
   border-radius: 50%;
   cursor:pointer;
 transition: 0.1s ease;
-backface-visibility: hidden;
-
 }
 .carta:hover{
   width: 300px;
   height: 300px;
-
 }
 
 
@@ -128,7 +126,7 @@ backface-visibility: hidden;
   padding: 30px 20px;
   display: flex;
   flex-wrap: wrap;
-  width: 850px;
+
   background-color: rgb(208, 208, 208);
   box-shadow: 0px 10px 5px -3px rgba(0, 0, 0, 0.491) inset;
 }
@@ -270,20 +268,21 @@ transform: scale(1.2);
 @media only screen and (max-width: 900px){
 
   
-  .main-container{
-    align-items: end;
-    justify-content: center;
-
-  }
-  
   .carousel-container {
       justify-content: center;
     align-items: center;
+background-image: url(../assets/background2.webp);
 
   }
 
   .contenedortazos{
-    width: auto;
+    padding: 0px 0px;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid rgb(223, 223, 223);
+    width: 260PX;
+    height: 260PX;
+    transform: translateY(-50px);
   }
 
   .carta:hover{
@@ -301,6 +300,8 @@ transform: scale(1.2);
   }
 
   .main-container{
+    align-items: end;
+    justify-content: center;
     background-image: url(../assets/);
     background-size: cover;
     width: 100%;
@@ -309,6 +310,13 @@ transform: scale(1.2);
     bottom: 12%;
   }
 
+  .carousel-item {
+    margin: 0px 0px;
+    width: 200px;
+    height: 200px;
+
+  }
+  
   .botonreset{
     background-image: url(../assets/reload.webp);
     background-size: cover;
@@ -317,6 +325,12 @@ transform: scale(1.2);
   }
   .footer{
     padding: 0% 10%;
+
+  }
+
+  .contenedortazosbrillo{
+    transform: translateY(-50px);
+    box-shadow: -1px 6px 4px -1px rgba(0, 0, 0, 0.514);
 
   }
 }
