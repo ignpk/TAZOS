@@ -104,7 +104,7 @@ transition: 0.1s ease;
 }
 
 .lineasb{
-  filter: opacity(0.4);
+  filter: opacity(0.5);
   z-index: 2;
   background-size: cover;
   background-image: url(../assets/LINEASB.webp);
