@@ -3,6 +3,7 @@
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   outline: none;
+  user-select: none;
 }
 
 
@@ -104,7 +105,7 @@ transition: 0.1s ease;
 }
 
 .lineasb{
-  filter: opacity(0.5);
+  filter: opacity(0.4);
   z-index: 2;
   background-size: cover;
   background-image: url(../assets/LINEASB.webp);
@@ -308,7 +309,7 @@ background-image: url(../assets/background2.webp);
     width: 100%;
     height: 120px;
     right: 0%;
-    bottom: 15%;
+    bottom: 12%;
   }
 
   .carousel-item {
