@@ -110,9 +110,9 @@ transition: 0.1s ease;
 }
 .medio,
 .arriba,
-.sombra {z-index: 4;   filter: contrast(1.2);}
+.sombra {z-index: 4;
+     filter: contrast(1.2);}
 
-  
 .carousel-container {
   background-image: url(../assets/background.webp);
   background-position: center;
