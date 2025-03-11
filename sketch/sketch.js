@@ -82,11 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔹 **GIROSCOPIO SOLO PARA MÓVILES (<500px)**
     if (window.innerWidth < 500) {
-      window.addEventListener("deviceorientation", (event) => {
-        const { beta, gamma } = event;
-        const xAxis = gamma / 5; // Movimiento lateral
-        const yAxis = beta / 8;  // Movimiento frontal
-
+      window.addEventListener("deviceorientation", function (event) {
+        const gamma = event.gamma; // Rotación en el eje Y
+        const beta = event.beta;   // Rotación en el eje X
+    
         elemento.style.transform = `perspective(800px) rotateX(${-yAxis}deg) rotateY(${xAxis}deg)`;
 
         // Sombra dinámica con giroscopio
