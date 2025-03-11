@@ -16,11 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const arriba = elemento.querySelector(".arriba");
     const sombra = elemento.querySelector(".sombra");
 
-    let lastPositionX = 0;
-    let lastPositionY = 0;
-    let accumulatedY1 = 0;
-    let accumulatedY2 = 0;
-
     const moverLineas = (e) => {
       const isTouchEvent = e.type.includes("touch");
       const clientX = isTouchEvent ? e.touches[0].clientX : e.clientX;
@@ -35,12 +30,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       elemento.style.transform = `perspective(800px) rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
 
-      // Calcular el porcentaje de desplazamiento en el eje X para opacidades
+      // 🔹 **Aplicar sombra dinámica**
+      const shadowX = (clientX - rect.left - rect.width / 2) / 8;
+      const shadowY = (clientY - rect.top - rect.height / 2) / 5;
+      elemento.style.boxShadow = `${shadowX}px ${shadowY}px 5px rgba(0, 0, 0, 0.3)`;
+
+      // Calcular el porcentaje de desplazamiento en el eje Y para opacidades
       if (medio && arriba && sombra) {
         const offsetY = clientY - rect.top;
         const porcentajeY = offsetY / rect.height;
 
-      if (porcentajeY < 0.33) {
+        if (porcentajeY < 0.33) {
           arriba.style.opacity = 1 - (porcentajeY * 3);
           medio.style.opacity = (porcentajeY - 0) * 3;
           sombra.style.opacity = 0;
@@ -61,8 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
         circle.style.left = `${clientX - rect.left}px`;
         circle.style.top = `${clientY - rect.top}px`;
       });
-
-
     };
 
     const startInteraction = () => {
@@ -81,6 +79,22 @@ document.addEventListener("DOMContentLoaded", function () {
     elemento.addEventListener("touchstart", startInteraction);
     elemento.addEventListener("mouseleave", stopInteraction);
     elemento.addEventListener("touchend", stopInteraction);
+
+    // 🔹 **GIROSCOPIO SOLO PARA MÓVILES (<500px)**
+    if (window.innerWidth < 500) {
+      window.addEventListener("deviceorientation", (event) => {
+        const { beta, gamma } = event;
+        const xAxis = gamma / 5; // Movimiento lateral
+        const yAxis = beta / 8;  // Movimiento frontal
+
+        elemento.style.transform = `perspective(800px) rotateX(${-yAxis}deg) rotateY(${xAxis}deg)`;
+
+        // Sombra dinámica con giroscopio
+        const shadowX = gamma / 3;
+        const shadowY = beta / 5;
+        elemento.style.boxShadow = `${shadowX}px ${shadowY}px 5px rgba(0, 0, 0, 0.3)`;
+      });
+    }
   }
 
   cartas.forEach(aplicarEfectos);
