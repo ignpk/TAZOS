@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
       elemento.style.transform = `perspective(800px) rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
 
         // 🔹 **Aplicar sombra dinámica**
-  const shadowX = (clientX - rect.left - rect.width / 2) / 8;
-  const shadowY = (clientY - rect.top - rect.height / 2) / 8;
-  elemento.style.boxShadow = `${shadowX}px ${shadowY}px 5px rgba(0, 0, 0, 0.3)`;
+  const shadowX = (clientX - rect.left - rect.width / 2) / 70;
+  const shadowY = (clientY - rect.top - rect.height / 2) / 70;
+  elemento.style.boxShadow = `${shadowX}px ${shadowY}px 1px rgb(255, 255, 255)`;
 
 
       // Calcular el porcentaje de desplazamiento en el eje X para opacidades
